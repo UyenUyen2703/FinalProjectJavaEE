@@ -1,0 +1,137 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 9, 2025, 10:45:07 PM
+    Author     : uyenm
+*/
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Nền gradient tím với cảnh đêm */
+.background {
+  background: linear-gradient(to bottom right, #7f53ac, #647dee);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Hộp login/register */
+.login-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 30%;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.login-box h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+.input-group input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #a78bfa; /* hoặc bất kỳ màu nào bạn muốn */
+}
+
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 15px;
+}
+
+.input-group input::placeholder {
+  color: white;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: white;
+}
+
+/* Ghi nhớ & quên mật khẩu */
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 0 5px;
+}
+
+.options a {
+  color: #eee;
+  text-decoration: none;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Nút submit */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  color: #4b2b8f;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #eaeaea;
+}
+
+/* Link chuyển đổi Login/Register */
+.register-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+

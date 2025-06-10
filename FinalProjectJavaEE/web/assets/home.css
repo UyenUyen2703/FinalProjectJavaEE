@@ -1,0 +1,74 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 9, 2025, 9:10:29 PM
+    Author     : uyenm
+*/
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Ảnh sản phẩm cố định kích thước */
+.card-img-top {
+    height:100%;
+    object-fit: cover;
+}
+
+/* Phần nội dung co giãn */
+.card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Tiêu đề có chiều cao tối thiểu để đều */
+.card-title {
+    min-height: 48px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* Nội dung chi tiết */
+.card-text {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.price {
+    color: red;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+}
+
+.card-footer .btn-primary {
+    background-color:  #FFAAAA;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 30px;
+}
+
+.card-footer .btn-primary:hover {
+    background-color: #FF9898;
+    transform: scale(1.05);
+}
