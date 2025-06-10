@@ -29,10 +29,12 @@
                             <h1>Laptop Store</h1>
 
                         </div>
-                        <div class="search-textbox">
+
+                        <form method="get" action="<c:url value='/index' />" class="search-textbox">
                             <i class="fa fa-search"></i>
-                            <input type="text" placeholder="Search..." />
-                        </div>
+                            <input type="text" name="keyword" value="${param.keyword}" placeholder="Search..." />
+                        </form>
+
                         <nav>
                             <a href="<c:url value="/"/>">Home</a>
                             <a href="<c:url value="/register"/>">Register</a>

@@ -46,4 +46,52 @@
             </div>
         </c:forEach>
     </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+
+            <!-- First -->
+            <c:if test="${currentPage > 1}">
+                <li class="page-item">
+                    <c:url var="firstPageUrl" value="/index">
+                        <c:param name="page" value="1" />
+                        <c:param name="size" value="6" />
+                        <c:if test="${sort != null}">
+                            <c:param name="sort" value="${sort}" />
+                        </c:if>
+                    </c:url>
+                    <a class="page-link" href="${firstPageUrl}">First</a>
+                </li>
+            </c:if>
+
+            <!-- Page Numbers -->
+            <c:forEach var="i" begin="1" end="${totalPages}">
+                <li class="page-item ${i == currentPage ? 'active' : ''}">
+                    <c:url var="pageUrl" value="/index">
+                        <c:param name="page" value="${i}" />
+                        <c:param name="size" value="6" />
+                        <c:if test="${sort != null}">
+                            <c:param name="sort" value="${sort}" />
+                        </c:if>
+                    </c:url>
+                    <a class="page-link" href="${pageUrl}">${i}</a>
+                </li>
+            </c:forEach>
+
+            <!-- Last -->
+            <c:if test="${currentPage < totalPages}">
+                <li class="page-item">
+                    <c:url var="lastPageUrl" value="/index">
+                        <c:param name="page" value="${totalPages}" />
+                        <c:param name="size" value="6" />
+                        <c:if test="${sort != null}">
+                            <c:param name="sort" value="${sort}" />
+                        </c:if>
+                    </c:url>
+                    <a class="page-link" href="${lastPageUrl}">Last</a>
+                </li>
+            </c:if>
+
+        </ul>
+    </nav>
+
 </div>

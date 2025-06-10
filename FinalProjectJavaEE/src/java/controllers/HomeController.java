@@ -27,10 +27,16 @@ public class HomeController {
     private ProductFacade pf;
 
     @RequestMapping({"", "index"})
-    public ModelAndView index(@RequestParam(value = "sort", required = false) String sort) {
+    public ModelAndView index(
+            @RequestParam(value = "sort", required = false) String sort,
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "6") int size,
+            @RequestParam(value = "keyword", required = false) String keyword) {
         //khai báo tên view
+
         mv.addObject("view", "index");
-        //đọc table product
+
+        // Lấy toàn bộ danh sách theo sort (nếu có)
         List<Product> list;
         if ("priceAsc".equals(sort)) {
             list = pf.findAllOrderByPriceAsc();
@@ -39,8 +45,26 @@ public class HomeController {
         } else {
             list = pf.findAll();
         }
-        //truyển list vào
-        mv.addObject("list", list);
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            list = pf.searchByNameOrCategory(keyword);
+        } else {
+            list = pf.findAll();
+        }
+
+        int totalItems = list.size();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
+
+        int fromIndex = (page - 1) * size;
+        int toIndex = Math.min(fromIndex + size, totalItems);
+        List<Product> paginatedList = list.subList(fromIndex, toIndex);
+
+        mv.addObject("list", paginatedList);
+        mv.addObject("currentPage", page);
+        mv.addObject("totalPages", totalPages);
+        mv.addObject("sort", sort);
+        mv.addObject("keyword", keyword);
+
         return mv;
     }
 
@@ -55,7 +79,7 @@ public class HomeController {
 
     @RequestMapping("login")
     public ModelAndView login() {
-        ModelAndView mav = new ModelAndView("layout","folder","auth");
+        ModelAndView mav = new ModelAndView("layout", "folder", "auth");
         mav.addObject("view", "login");
         mav.addObject("isAuthPage", true);
         return mav;
@@ -63,7 +87,7 @@ public class HomeController {
 
     @RequestMapping("register")
     public ModelAndView register() {
-        ModelAndView mav = new ModelAndView("layout","folder", "auth");
+        ModelAndView mav = new ModelAndView("layout", "folder", "auth");
         mav.addObject("view", "register");
         mav.addObject("isAuthPage", true);
         return mav;

@@ -34,10 +34,19 @@ public class ProductFacade extends AbstractFacade<Product> {
         return em.createQuery("SELECT p FROM Product p ORDER BY p.price ASC", Product.class)
                 .getResultList();
     }
-    
+
     public List<Product> findAllOrderByPriceDesc() {
-    return em.createQuery("SELECT p FROM Product p ORDER BY p.price DESC", Product.class)
-             .getResultList();
-}
+        return em.createQuery("SELECT p FROM Product p ORDER BY p.price DESC", Product.class)
+                .getResultList();
+    }
+
+    public List<Product> searchByNameOrCategory(String keyword) {
+        return em.createQuery(
+                "SELECT p FROM Product p WHERE LOWER(p.name) LIKE :kw OR LOWER(p.categoryId.name) LIKE :kw",
+                Product.class
+        )
+                .setParameter("kw", "%" + keyword.toLowerCase() + "%")
+                .getResultList();
+    }
 
 }
