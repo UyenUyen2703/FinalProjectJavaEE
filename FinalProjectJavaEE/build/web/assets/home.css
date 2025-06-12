@@ -72,3 +72,12 @@ and open the template in the editor.
     background-color: #FF9898;
     transform: scale(1.05);
 }
+
+.btn-cart{
+    margin-bottom: 10px;
+}
+
+.btn{
+    background-color:  #FFAAAA;
+    border: none;
+}

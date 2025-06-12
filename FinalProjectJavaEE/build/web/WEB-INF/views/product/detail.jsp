@@ -25,12 +25,15 @@
                 <fmt:formatNumber value="${laptop.price * 1000}" type="currency" maxFractionDigits="0"/> đ
             </h4>
             <!--<p>Tồn kho: <fmt:formatNumber value="${laptop.quantity}" type="number"/></p>-->
-            <form action="add-to-cart" method="post" class="mt-4">
-                <input type="hidden" name="id" value="${laptop.id}">
-                <button type="submit" class="btn btn-primary btn-lg">
-                    <i class="bi bi-cart3"></i> Add to cart
-                </button>
-            </form>
+
+            <div class="btn-cart">
+                <form action="${pageContext.request.contextPath}/add" method="get" class="text-center">
+                    <input type="hidden" name="id" value="${laptop.id}" />
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-cart3"></i> Add to cart
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 

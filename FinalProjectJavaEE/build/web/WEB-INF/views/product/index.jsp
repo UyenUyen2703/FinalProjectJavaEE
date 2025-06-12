@@ -16,9 +16,9 @@
     <div class="mb-3">
         <form method="get" action="<c:url value='/index' />">
             <select name="sort" onchange="this.form.submit()" class="form-select w-auto d-inline-block">
-                <option value="">-- Sắp xếp --</option>
-                <option value="priceAsc" ${param.sort == 'priceAsc' ? 'selected' : ''}>Giá tăng dần</option>
-                <option value="priceDesc" ${param.sort == 'priceDesc' ? 'selected' : ''}>Giá giảm dần</option>
+                <option value="">--Sort --</option>
+                <option value="priceAsc" ${param.sort == 'priceAsc' ? 'selected' : ''}>Price increasing</option>
+                <option value="priceDesc" ${param.sort == 'priceDesc' ? 'selected' : ''}>Price decreasing</option>
             </select>
         </form>
 
@@ -32,16 +32,21 @@
                     <div class="card-body">
                         <h5 class="card-title">${laptop.name}</h5>
                         <p class="card-text">
-                            Giá: <span class="price"><fmt:formatNumber value="${laptop.price * 1000}" type="currency" maxFractionDigits="0"/></span><br>
+                            Price: <span class="price"><fmt:formatNumber value="${laptop.price * 1000}" type="currency" maxFractionDigits="0"/></span><br>
                             <!--Tồn kho: <fmt:formatNumber value="${laptop.quantity}" type="number"/><br>-->
-                            Danh mục: ${laptop.categoryId.name}
+                            Category Name: ${laptop.categoryId.name}
                         </p>
                     </div>
-                    <div class="card-footer text-center bg-transparent border-0" >
-                        <a href="add-to-cart?id=${laptop.id}" class="btn btn-primary" >
-                            <i class="bi bi-cart3"></i> Add to cart
-                        </a>
+                    <div class="btn-cart">
+                        <form action="${pageContext.request.contextPath}/add" method="get" class="text-center">
+                            <input type="hidden" name="id" value="${laptop.id}" />
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-cart3"></i> Add to cart
+                            </button>
+                        </form>
                     </div>
+
+
                 </div>
             </div>
         </c:forEach>
@@ -49,7 +54,6 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center mt-4">
 
-            <!-- First -->
             <c:if test="${currentPage > 1}">
                 <li class="page-item">
                     <c:url var="firstPageUrl" value="/index">
@@ -63,7 +67,6 @@
                 </li>
             </c:if>
 
-            <!-- Page Numbers -->
             <c:forEach var="i" begin="1" end="${totalPages}">
                 <li class="page-item ${i == currentPage ? 'active' : ''}">
                     <c:url var="pageUrl" value="/index">
@@ -77,7 +80,6 @@
                 </li>
             </c:forEach>
 
-            <!-- Last -->
             <c:if test="${currentPage < totalPages}">
                 <li class="page-item">
                     <c:url var="lastPageUrl" value="/index">
@@ -90,8 +92,6 @@
                     <a class="page-link" href="${lastPageUrl}">Last</a>
                 </li>
             </c:if>
-
         </ul>
     </nav>
-
 </div>

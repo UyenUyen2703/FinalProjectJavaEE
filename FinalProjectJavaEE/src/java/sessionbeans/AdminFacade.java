@@ -28,5 +28,15 @@ public class AdminFacade extends AbstractFacade<Admin> {
     public AdminFacade() {
         super(Admin.class);
     }
-    
+
+    public Admin findByEmail(String email) {
+        try {
+            return em.createQuery("SELECT a FROM Admin a WHERE a.email = :email", Admin.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

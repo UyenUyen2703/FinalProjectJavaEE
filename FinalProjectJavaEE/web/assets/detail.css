@@ -22,3 +22,12 @@ h2 {
     background-color: #0056b3;
     transform: scale(1.05);
 }
+
+.btn-cart{
+    margin-bottom: 10px;
+}
+
+.btn{
+    background-color:  #FFAAAA;
+    border: none;
+}

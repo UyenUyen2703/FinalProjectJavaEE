@@ -36,20 +36,23 @@ public class HomeController {
 
         mv.addObject("view", "index");
 
-        // Lấy toàn bộ danh sách theo sort (nếu có)
         List<Product> list;
-        if ("priceAsc".equals(sort)) {
-            list = pf.findAllOrderByPriceAsc();
-        } else if ("priceDesc".equals(sort)) {
-            list = pf.findAllOrderByPriceDesc();
-        } else {
-            list = pf.findAll();
-        }
 
         if (keyword != null && !keyword.trim().isEmpty()) {
             list = pf.searchByNameOrCategory(keyword);
+            if ("priceAsc".equals(sort)) {
+                list.sort((a, b) -> Double.compare(a.getPrice(), b.getPrice()));
+            } else if ("priceDesc".equals(sort)) {
+                list.sort((a, b) -> Double.compare(b.getPrice(), a.getPrice()));
+            }
         } else {
-            list = pf.findAll();
+            if ("priceAsc".equals(sort)) {
+                list = pf.findAllOrderByPriceAsc();
+            } else if ("priceDesc".equals(sort)) {
+                list = pf.findAllOrderByPriceDesc();
+            } else {
+                list = pf.findAll();
+            }
         }
 
         int totalItems = list.size();

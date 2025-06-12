@@ -7,6 +7,15 @@ CREATE DATABASE [LaptopStore]
 GO
 USE [LaptopStore]
 GO
+
+CREATE TABLE [dbo].[Account](
+	[id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	[username]  VARCHAR(100) UNIQUE NOT NULL,
+	[email]  VARCHAR(100) UNIQUE NOT NULL,
+	[password]VARCHAR(100) NOT NULL,
+    role VARCHAR(20) NOT NULL
+)
+GO
 CREATE TABLE [dbo].[Category](
 	[id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	[name] [varchar](50) NOT NULL

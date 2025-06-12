@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="container-fluid">
-            <c:if test="${not isAuthPage}">
+            <c:if test="${isAuthPage != true}">
                 <div class="row">
                     <div class="col-sm-12 d-flex justify-content-between align-items-center flex-wrap" style="background-color: #ffe5ec; border-bottom: 2px solid #fa7070;">
                         <div class="header-brand">
@@ -27,7 +27,6 @@
                                 <img src="<c:url value='/imgs/logo.png'/>" class="logo" alt="logo">
                             </a>
                             <h1>Laptop Store</h1>
-
                         </div>
 
                         <form method="get" action="<c:url value='/index' />" class="search-textbox">
@@ -39,6 +38,10 @@
                             <a href="<c:url value="/"/>">Home</a>
                             <a href="<c:url value="/register"/>">Register</a>
                             <a href="<c:url value="/login"/>">Login</a>
+                            <a href="<c:url value="/view-cart"/>" class="btn-cart" >
+                                <c:set var="cart" value="${sessionScope.cart}" />
+                                <span><i class="bi bi-cart3"></i>${cart != null ? cart.totalQuantity : 0}</span>
+                            </a>
                         </nav>
                     </div>
                 </div>
@@ -50,7 +53,8 @@
                     <jsp:include page="/WEB-INF/views/${folder}/${view}.jsp"/>
                 </div>
             </div>
-            <c:if test="${not isAuthPage}"> 
+
+            <c:if test="${isAuthPage != true}">
                 <div class="row">
                     <div class="col-sm-12">
                         <!-- Footer -->
@@ -59,6 +63,8 @@
                     </div>
                 </div>
             </c:if>
+
         </div>
     </body>
 </html>
+

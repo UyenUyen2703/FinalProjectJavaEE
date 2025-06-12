@@ -9,12 +9,13 @@ import entities.Customer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author uyenm
  */
-@Stateless
+@Repository
 public class CustomerFacade extends AbstractFacade<Customer> {
 
     @PersistenceContext(unitName = "FinalProjectJavaEEPU")
@@ -28,5 +29,24 @@ public class CustomerFacade extends AbstractFacade<Customer> {
     public CustomerFacade() {
         super(Customer.class);
     }
-    
+
+    public Customer findByEmail(String email) {
+        try {
+            return em.createQuery("SELECT c FROM Customer c WHERE c.email = :email", Customer.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+        public Customer findByUsername(String username) {
+        try {
+            return em.createQuery("SELECT c FROM Customer c WHERE c.username = :username", Customer.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
