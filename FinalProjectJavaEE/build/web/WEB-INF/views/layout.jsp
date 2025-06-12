@@ -34,15 +34,30 @@
                             <input type="text" name="keyword" value="${param.keyword}" placeholder="Search..." />
                         </form>
 
+
+
                         <nav>
-                            <a href="<c:url value="/"/>">Home</a>
-                            <a href="<c:url value="/register"/>">Register</a>
-                            <a href="<c:url value="/login"/>">Login</a>
-                            <a href="<c:url value="/view-cart"/>" class="btn-cart" >
+                            <c:choose>
+                                <c:when test="${empty sessionScope.account}">
+                                    <a href="<c:url value='/register'/>">Register</a>
+                                    <a href="<c:url value='/login'/>">Login</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="info">
+                                        <span>Hello, <strong>${sessionScope.account.username}</strong></span>
+                                        <a href="<c:url value='/logout'/>"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                                    </div>
+                                    
+                                </c:otherwise>
+                            </c:choose>
+                            <!--<a href="<c:url value="/"/>">Home</a>-->
+
+                            <a href="<c:url value='/view-cart'/>" class="btn-cart">
                                 <c:set var="cart" value="${sessionScope.cart}" />
                                 <span><i class="bi bi-cart3"></i>${cart != null ? cart.totalQuantity : 0}</span>
                             </a>
                         </nav>
+
                     </div>
                 </div>
             </c:if>

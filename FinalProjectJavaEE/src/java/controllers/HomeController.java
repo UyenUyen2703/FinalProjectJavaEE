@@ -79,21 +79,4 @@ public class HomeController {
         mv.addObject("laptop", p);
         return mv;
     }
-
-    @RequestMapping("login")
-    public ModelAndView login() {
-        ModelAndView mav = new ModelAndView("layout", "folder", "auth");
-        mav.addObject("view", "login");
-        mav.addObject("isAuthPage", true);
-        return mav;
-    }
-
-    @RequestMapping("register")
-    public ModelAndView register() {
-        ModelAndView mav = new ModelAndView("layout", "folder", "auth");
-        mav.addObject("view", "register");
-        mav.addObject("isAuthPage", true);
-        return mav;
-    }
-
 }

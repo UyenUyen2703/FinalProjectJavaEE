@@ -46,7 +46,10 @@ h1 {
 /* Navbar */
 nav {
     display: flex;
+    flex-direction: row;
     gap: 20px;
+    align-items: center;
+    
 }
 
 nav a {
@@ -101,4 +104,42 @@ nav a:hover {
 
 .search-textbox .left-icon {
     margin-right: 10px;
+}
+
+.infor {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.infor span {
+    white-space: nowrap;
+}
+
+.infor a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.infor a:hover {
+    color: #fa7070;
+}
+
+.btn-cart {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+.btn-cart:hover {
+    color: #fa7070;
 }

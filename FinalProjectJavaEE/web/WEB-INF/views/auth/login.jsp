@@ -12,7 +12,7 @@
 <div class="background">
     <div class="login-box">
         <h2>Login</h2>
-        <form method="post" action="/login">
+        <form method="post" action="<c:url value='/login' />">
             <div class="input-group">
                 <input type="email" name="email" placeholder="Email" required>
                 <i class="fas fa-user"></i>

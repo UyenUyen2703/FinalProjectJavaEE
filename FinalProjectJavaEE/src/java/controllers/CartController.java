@@ -90,18 +90,18 @@ public class CartController {
 
     @RequestMapping("/checkout")
     public String checkout(@ModelAttribute("cart") Cart cart, HttpSession session) {
-        Object user = session.getAttribute("user");
+        Object user = session.getAttribute("account");
         if (user == null) {
             return "redirect:/login";
         }
 
         cart.clear();
-        return "redirect:/cart/success";
+        return "redirect:/success";
     }
 
     @RequestMapping("/success")
     public ModelAndView success() {
         return new ModelAndView("layout", "folder", "cart")
-                .addObject("view", "success");
+                .addObject("view", "successful");
     }
 }

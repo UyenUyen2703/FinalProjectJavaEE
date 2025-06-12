@@ -22,13 +22,11 @@ and open the template in the editor.
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Ảnh sản phẩm cố định kích thước */
 .card-img-top {
     height:100%;
     object-fit: cover;
 }
 
-/* Phần nội dung co giãn */
 .card-body {
     flex: 1 1 auto;
     display: flex;
@@ -75,6 +73,9 @@ and open the template in the editor.
 
 .btn-cart{
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn{

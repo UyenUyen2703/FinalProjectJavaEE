@@ -12,7 +12,7 @@
 <div class="background">
     <div class="login-box">
         <h2>Register</h2>
-        <form method="post" action="/register">
+        <form method="post" action="<c:url value='/register' />">
             <div class="input-group">
                 <input type="text" name="username" placeholder="Name" required>
                 <i class="fas fa-user"></i>
@@ -37,7 +37,7 @@
                 <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
                 <i class="fas fa-lock"></i>
             </div>
-            <button type="submit" class="login-btn">Register</button>
+            <button type="submit" class="login-btn" >Register</button>
             <p class="register-link">Already have an account? <a href="<c:url value="/login"/>">Login</a></p>
         </form>
     </div>

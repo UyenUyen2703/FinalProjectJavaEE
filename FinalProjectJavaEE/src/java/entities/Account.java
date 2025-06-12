@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -48,13 +49,14 @@ public class Account implements Serializable {
     private String username;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Email cannot be null")
     @Size(min = 1, max = 100)
     @Column(name = "email")
+    @Email(message = "Email must be valid")
     private String email;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @NotNull(message = "Password cannot be null")
+    @Size(min = 1, max = 100,message = "Password must be at least 6 characters")
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
@@ -142,5 +144,5 @@ public class Account implements Serializable {
     public String toString() {
         return "entities.Account[ id=" + id + " ]";
     }
-    
+
 }

@@ -22,7 +22,7 @@
             <p class="text-muted">Category: ${laptop.categoryId.name}</p>
             <h4 class="text-danger">
                 Price:
-                <fmt:formatNumber value="${laptop.price * 1000}" type="currency" maxFractionDigits="0"/> đ
+                <fmt:formatNumber value="${laptop.price * 1000}" type="currency" maxFractionDigits="0"/>
             </h4>
             <!--<p>Tồn kho: <fmt:formatNumber value="${laptop.quantity}" type="number"/></p>-->
 

@@ -128,6 +128,7 @@ GO
 Select *from OrderDetail;
 Select *from OrderHeader;
 Select *from Product;
+Select *from Account;
 
 SET IDENTITY_INSERT [dbo].[OrderHeader] ON 
 INSERT INTO OrderHeader([id],[date],[customerId]) VALUES (2, '2025-05-06 14:33:00', 1);

@@ -31,6 +31,10 @@ public class AccountFacade extends AbstractFacade<Account> {
         super(Account.class);
     }
 
+    public void create(Account account) {
+        em.persist(account);
+    }
+
     public Account findByEmail(String email) {
         try {
             return em.createQuery("SELECT a FROM Account a WHERE a.email = :email", Account.class)
@@ -51,4 +55,5 @@ public class AccountFacade extends AbstractFacade<Account> {
             return null;
         }
     }
+
 }
