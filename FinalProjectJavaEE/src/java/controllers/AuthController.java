@@ -49,6 +49,7 @@ public class AuthController {
         if (account == null) {
             mv.setViewName("login");
             mv.addObject("error", "Invalid email or password");
+            System.out.println("controllers.AuthController.login()");
             return mv;
         }
         session.setAttribute("account", account);

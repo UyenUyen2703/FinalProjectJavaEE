@@ -55,7 +55,7 @@ public class HomeController {
             }
         }
 
-        int totalItems = list.size();
+        int totalItems = list.size();//tính tổng số dòng
         int totalPages = (int) Math.ceil((double) totalItems / size);
 
         int fromIndex = (page - 1) * size;
