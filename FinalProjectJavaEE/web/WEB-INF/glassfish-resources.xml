@@ -5,9 +5,9 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="1433"/>
         <property name="databaseName" value="LaptopStore"/>
-        <property name="User" value="quantri"/>
-        <property name="Password" value="02072003"/>
-        <property name="URL" value="jdbc:sqlserver://localhost:1433;databaseName=LaptopStore"/>
+        <property name="User" value="sa"/>
+        <property name="Password" value="123"/>
+        <property name="URL" value="jdbc:sqlserver://localhost:1433;databaseName=LaptopStore;encrypt=true;trustServerCertificate=true"/>
         <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/LaptopStore" object-type="user" pool-name="microsoft_sql_LaptopStore_quantriPool"/>

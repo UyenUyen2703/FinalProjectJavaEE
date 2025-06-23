@@ -21,12 +21,17 @@ public class OrderHeaderFacade extends AbstractFacade<OrderHeader> {
     private EntityManager em;
 
     @Override
-    protected EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         return em;
     }
 
     public OrderHeaderFacade() {
         super(OrderHeader.class);
     }
+    public void createAndFlush(OrderHeader orderHeader) {
+    create(orderHeader); // gọi phương thức create sẵn có
+    getEntityManager().flush(); // đảm bảo sinh ID
+}
+
     
 }
