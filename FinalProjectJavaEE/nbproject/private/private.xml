@@ -3,12 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/auth/login.jsp</file>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/src/java/sessionbeans/AdminFacade.java</file>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/admin/index.jsp</file>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/dispatcher-servlet.xml</file>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/product/index.jsp</file>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/src/java/controllers/CartController.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/sessionbeans/OrderHeaderFacade.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/Cart.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/Admin.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/web/WEB-INF/views/cart/successful.jsp</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/web/WEB-INF/views/cart/index.jsp</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/controllers/HomeController.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/Product.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/OrderHeader.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/sessionbeans/CategoryFacade.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/sessionbeans/AbstractFacade.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/web/WEB-INF/glassfish-resources.xml</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/sessionbeans/CustomerFacade.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/Customer.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/sessionbeans/OrderDetailFacade.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/controllers/CartController.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/sessionbeans/ProductFacade.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/OrderDetail.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/Category.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/controllers/AuthController.java</file>
+            <file>file:/C:/javaee1/FinalProjectJavaEE/FinalProjectJavaEE/src/java/entities/Account.java</file>
         </group>
     </open-files>
 </project-private>
