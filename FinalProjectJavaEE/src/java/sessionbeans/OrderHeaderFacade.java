@@ -5,10 +5,13 @@
  */
 package sessionbeans;
 
+import entities.Customer;
 import entities.OrderHeader;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,10 +31,19 @@ public class OrderHeaderFacade extends AbstractFacade<OrderHeader> {
     public OrderHeaderFacade() {
         super(OrderHeader.class);
     }
-    public void createAndFlush(OrderHeader orderHeader) {
-    create(orderHeader); // gọi phương thức create sẵn có
-    getEntityManager().flush(); // đảm bảo sinh ID
-}
 
-    
+    public void createAndFlush(OrderHeader orderHeader) {
+        create(orderHeader); // gọi phương thức create sẵn có
+        getEntityManager().flush(); // đảm bảo sinh ID
+    }
+
+    public List<OrderHeader> findByCustomer(Customer customer) {
+        TypedQuery<OrderHeader> query = em.createQuery(
+            "SELECT o FROM OrderHeader o WHERE o.customerId = :customer ORDER BY o.date DESC",
+            OrderHeader.class
+        );
+        query.setParameter("customer", customer);
+        return query.getResultList();
+    }
+
 }

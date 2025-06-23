@@ -30,6 +30,15 @@ public class AuthController {
     @EJB(mappedName = "java:global/FinalProjectJavaEE/AccountFacade")
     private AccountFacade af;
 
+    private ModelAndView getAuthErrorView(String page, String errorMessage) {
+        ModelAndView mv = new ModelAndView("layout");
+        mv.addObject("folder", "auth");
+        mv.addObject("view", page);
+        mv.addObject("isAuthPage", true);
+        mv.addObject("error", errorMessage);
+        return mv;
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView showLoginForm() {
         ModelAndView mav = new ModelAndView("layout", "folder", "auth");
@@ -55,9 +64,9 @@ public class AuthController {
         session.setAttribute("account", account);
         if (email.endsWith("@admin.com")) {
             session.setAttribute("role", "admin");
-            mv.addObject("folder","admin");
-            mv.addObject("view","index");
-            mv.setViewName("layout"); 
+            mv.addObject("folder", "admin");
+            mv.addObject("view", "index");
+            mv.setViewName("layout");
         } else if (email.endsWith("@gmail.com")) {
             session.setAttribute("role", "user");
             mv.setViewName("redirect:/index");
@@ -80,11 +89,24 @@ public class AuthController {
     public ModelAndView register(
             @RequestParam String username,
             @RequestParam String email,
-            @RequestParam String password) {
+            @RequestParam String password,
+            @RequestParam String confirmPassword) {
 
         ModelAndView mv = new ModelAndView("layout", "folder", "auth");
 
         try {
+            // Kiểm tra xác nhận mật khẩu
+            if (!password.equals(confirmPassword)) {
+                return getAuthErrorView("register", "Mật khẩu xác nhận không khớp.");
+            }
+            // Kiểm tra trùng tên đăng nhập
+            if (af.findByUsername(username) != null) {
+                return getAuthErrorView("register", "Tên đăng nhập đã tồn tại.");
+            }
+            // Kiểm tra trùng email
+            if (af.findByEmail(email) != null) {
+                return getAuthErrorView("register", "Email đã được sử dụng.");
+            }
             Account acc = new Account();
             acc.setUsername(username);
             acc.setEmail(email);

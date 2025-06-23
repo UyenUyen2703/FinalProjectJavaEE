@@ -33,9 +33,6 @@
                             <i class="fa fa-search"></i>
                             <input type="text" name="keyword" value="${param.keyword}" placeholder="Search..." />
                         </form>
-
-
-
                         <nav>
                             <c:choose>
                                 <c:when test="${empty sessionScope.account}">
@@ -46,6 +43,7 @@
                                     <div class="info">
                                         <span>Hello, <strong>${sessionScope.account.username}</strong></span>
                                         <a href="<c:url value='/logout'/>"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                                        <a href="<c:url value='/order-history'/>">Order History</a>
                                     </div>
                                     
                                 </c:otherwise>
@@ -56,6 +54,7 @@
                                 <c:set var="cart" value="${sessionScope.cart}" />
                                 <span><i class="bi bi-cart3"></i>${cart != null ? cart.totalQuantity : 0}</span>
                             </a>
+                            
                         </nav>
 
                     </div>

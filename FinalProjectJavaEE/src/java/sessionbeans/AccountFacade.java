@@ -39,7 +39,7 @@ public class AccountFacade extends AbstractFacade<Account> {
             return em.createQuery("SELECT a FROM Account a WHERE a.email = :email", Account.class)
                     .setParameter("email", email)
                     .getSingleResult();
-        } catch (Exception e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -49,6 +49,16 @@ public class AccountFacade extends AbstractFacade<Account> {
             return em.createQuery("SELECT a FROM Account a WHERE a.email = :email AND a.password = :password", Account.class)
                     .setParameter("email", email)
                     .setParameter("password", password)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public Account findByUsername(String username) {
+        try {
+            return em.createNamedQuery("Account.findByUsername", Account.class)
+                    .setParameter("username", username)
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;

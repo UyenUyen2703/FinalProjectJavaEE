@@ -12,6 +12,12 @@
 <div class="background">
     <div class="login-box">
         <h2>Register</h2>
+        <c:if test="${not empty error}">
+            <div style="color: red; text-align: center; margin-bottom: 10px;">
+                ${error}
+            </div>
+        </c:if>
+
         <form method="post" action="<c:url value='/register' />">
             <div class="input-group">
                 <input type="text" name="username" placeholder="Name" required>

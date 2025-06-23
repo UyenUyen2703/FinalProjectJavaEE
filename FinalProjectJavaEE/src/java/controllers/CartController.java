@@ -193,4 +193,28 @@ public class CartController {
         }
         return mv;
     }
+
+    @RequestMapping("/order-history")
+    public ModelAndView orderHistory(HttpSession session) {
+        Account account = (Account) session.getAttribute("account");
+        ModelAndView mv = new ModelAndView("layout", "folder", "cart");
+        mv.addObject("view", "history");
+
+        if (account == null) {
+            mv.setViewName("redirect:/login");
+            return mv;
+        }
+
+        try {
+            Customer customer = cf.findByEmail(account.getEmail());
+            if (customer != null) {
+                List<OrderHeader> orders = ohf.findByCustomer(customer);
+                mv.addObject("orders", orders);
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Failed to load order history", e);
+        }
+
+        return mv;
+    }
 }
