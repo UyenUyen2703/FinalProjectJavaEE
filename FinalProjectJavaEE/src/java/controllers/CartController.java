@@ -55,7 +55,7 @@ public class CartController {
 
     @RequestMapping("/add")
     public String addToCart(@RequestParam int id, @RequestParam(defaultValue = "1") int quantity,
-                            @ModelAttribute("cart") Cart cart) {
+            @ModelAttribute("cart") Cart cart) {
         try {
             Product p = pf.find(id);
             if (p != null) {
@@ -81,7 +81,7 @@ public class CartController {
 
     @RequestMapping("/update")
     public ModelAndView updateItem(@RequestParam int id, @RequestParam int quantity,
-                                   @ModelAttribute("cart") Cart cart) {
+            @ModelAttribute("cart") Cart cart) {
         cart.updateItem(id, quantity);
         ModelAndView mv = new ModelAndView("layout", "folder", "cart");
         mv.addObject("view", "index");
@@ -98,56 +98,61 @@ public class CartController {
         mv.addObject("items", cart.getItems());
         mv.addObject("total", cart.getTotal());
         return mv;
-    }@RequestMapping("/checkout")
-public String checkout(@ModelAttribute("cart") Cart cart, HttpSession session) {
-    Account account = (Account) session.getAttribute("account");
-    if (account == null) return "redirect:/login";
+    }
 
-    if (cart.getItems().isEmpty()) return "redirect:/view-cart?error=empty_cart";
-
-    try {
-        Customer customer = findOrCreateCustomer(account);
-
-        OrderHeader orderHeader = new OrderHeader();
-        orderHeader.setDate(new Date());
-        orderHeader.setStatus("New");
-        orderHeader.setCustomerId(customer);
-
-        List<OrderDetail> details = new ArrayList<>();
-        for (CartItem item : cart.getItems()) {
-            Product product = pf.find(item.getProduct().getId());
-            if (product == null) throw new RuntimeException("Product not found");
-
-            OrderDetail detail = new OrderDetail();
-            detail.setOrderHeaderId(orderHeader);
-            detail.setProductId(product);
-            detail.setQuantity(item.getQuantity());
-            detail.setPrice(product.getPrice());
-            details.add(detail);
+    @RequestMapping("/checkout")
+    public String checkout(@ModelAttribute("cart") Cart cart, HttpSession session) {
+        Account account = (Account) session.getAttribute("account");
+        if (account == null) {
+            return "redirect:/login";
         }
 
-        orderHeader.setOrderDetailList(details);
+        if (cart.getItems().isEmpty()) {
+            return "redirect:/view-cart?error=empty_cart";
+        }
 
-        ohf.createAndFlush(orderHeader);
-
-        session.setAttribute("lastOrderId", orderHeader.getId());
-        cart.clear();
-        return "redirect:/success";
-
-    } catch (Exception e) {
-        LOGGER.log(Level.SEVERE, "Checkout failed", e);
-        String errorMsg = (e.getMessage() != null) ? e.getMessage()
-                : (e.getCause() != null) ? e.getCause().toString() : "Unknown error";
         try {
-            return "redirect:/view-cart?error=checkout_failed&message=" + URLEncoder.encode(errorMsg, "UTF-8");
-        } catch (Exception ex) {
-            return "redirect:/view-cart?error=checkout_failed&message=encode_error";
+            Customer customer = findOrCreateCustomer(account);
+
+            OrderHeader orderHeader = new OrderHeader();
+            orderHeader.setDate(new Date());
+            orderHeader.setStatus("New");
+            orderHeader.setCustomerId(customer);
+
+            List<OrderDetail> details = new ArrayList<>();
+            for (CartItem item : cart.getItems()) {
+                Product product = pf.find(item.getProduct().getId());
+                if (product == null) {
+                    throw new RuntimeException("Product not found");
+                }
+
+                OrderDetail detail = new OrderDetail();
+                detail.setOrderHeaderId(orderHeader);
+                detail.setProductId(product);
+                detail.setQuantity(item.getQuantity());
+                detail.setPrice(product.getPrice());
+                details.add(detail);
+            }
+
+            orderHeader.setOrderDetailList(details);
+
+            ohf.createAndFlush(orderHeader);
+
+            session.setAttribute("lastOrderId", orderHeader.getId());
+            cart.clear();
+            return "redirect:/success";
+
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Checkout failed", e);
+            String errorMsg = (e.getMessage() != null) ? e.getMessage()
+                    : (e.getCause() != null) ? e.getCause().toString() : "Unknown error";
+            try {
+                return "redirect:/view-cart?error=checkout_failed&message=" + URLEncoder.encode(errorMsg, "UTF-8");
+            } catch (Exception ex) {
+                return "redirect:/view-cart?error=checkout_failed&message=encode_error";
+            }
         }
     }
-}
-
-
-
 
     private Customer findOrCreateCustomer(Account account) {
         try {
