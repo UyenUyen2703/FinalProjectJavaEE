@@ -138,3 +138,5 @@ SET IDENTITY_INSERT [dbo].[OrderHeader] OFF
 SET IDENTITY_INSERT [dbo].[OrderDetail] ON
 INSERT INTO OrderDetail([id],[orderHeaderId],[productId],[quantity],[price]) VALUES (2, 2,3,5,74.11);
 SET IDENTITY_INSERT [dbo].[OrderDetail] OFF 
+
+ALTER TABLE Product ADD image VARCHAR(255);

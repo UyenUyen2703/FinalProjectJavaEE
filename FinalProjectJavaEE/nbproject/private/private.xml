@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/auth/login.jsp</file>
-            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/layout.jsp</file>
+            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/admin/update.jsp</file>
+            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/src/java/entities/Product.java</file>
+            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/admin/create.jsp</file>
+            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/web/WEB-INF/views/admin/index.jsp</file>
+            <file>file:/C:/Users/uyenm/Documents/JavaEE/Project/FinalProjectJavaEE/src/java/controllers/AdminController.java</file>
         </group>
     </open-files>
 </project-private>

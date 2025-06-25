@@ -5,13 +5,42 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" href="<c:url value='/css/admin.css' />"/>
+
+<h1>Admin - Product Management</h1>
+
+<div style="margin-bottom: 20px;">
+    <a href="<c:url value='/admin/create' />" class="btn-add">Thêm Sản Phẩm</a>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Danh mục</th>
+            <th>Tùy chọn</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="product" items="${list}">
+            <tr>
+                <td>${product.id}</td>
+                <td>${product.name}</td>
+                <td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="đ"/></td>
+                <td><fmt:formatNumber value="${product.quantity}" type="number" maxFractionDigits="0"/></td>
+                <td>${product.categoryId.name}</td>
+                <td>
+                    <a href="<c:url value='/admin/edit?id=${product.id}' />">Sửa</a> |
+                    <a href="<c:url value='/admin/delete?id=${product.id}' />"
+                       onclick="return confirm('Xóa sản phẩm này?');">Xóa</a>
+                </td>
+
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>

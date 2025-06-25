@@ -64,9 +64,7 @@ public class AuthController {
         session.setAttribute("account", account);
         if (email.endsWith("@admin.com")) {
             session.setAttribute("role", "admin");
-            mv.addObject("folder", "admin");
-            mv.addObject("view", "index");
-            mv.setViewName("layout");
+            mv.setViewName("redirect:/admin");
         } else if (email.endsWith("@gmail.com")) {
             session.setAttribute("role", "user");
             mv.setViewName("redirect:/index");
