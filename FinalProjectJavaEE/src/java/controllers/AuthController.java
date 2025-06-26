@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import sessionbeans.AccountFacade;
-
+import org.mindrot.jbcrypt.BCrypt;
 /**
  *
  * @author uyenm
@@ -52,13 +52,15 @@ public class AuthController {
             @RequestParam String email,
             @RequestParam String password,
             HttpSession session) {
-        Account account = af.findByEmailAndPassword(email, password);
+        Account account = af.findByEmail(email);
         ModelAndView mv = new ModelAndView();
 
-        if (account == null) {
-            mv.setViewName("login");
+        if (account == null || !BCrypt.checkpw(password, account.getPassword())) {
+            mv.setViewName("layout");
+            mv.addObject("folder", "auth");
+            mv.addObject("view", "login");
+            mv.addObject("isAuthPage", true);
             mv.addObject("error", "Invalid email or password");
-            System.out.println("controllers.AuthController.login()");
             return mv;
         }
         session.setAttribute("account", account);
@@ -108,7 +110,8 @@ public class AuthController {
             Account acc = new Account();
             acc.setUsername(username);
             acc.setEmail(email);
-            acc.setPassword(password);
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            acc.setPassword(hashedPassword);
 
             if (email.endsWith("@admin.com")) {
                 acc.setRole("admin");

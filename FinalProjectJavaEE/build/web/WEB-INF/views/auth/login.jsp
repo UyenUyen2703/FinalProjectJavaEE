@@ -12,6 +12,9 @@
 <div class="background">
     <div class="login-box">
         <h2>Login</h2>
+        <c:if test="${not empty error}">
+            <div class="alert alert-danger">${error}</div>
+        </c:if>
         <form method="post" action="<c:url value='/login' />">
             <div class="input-group">
                 <input type="email" name="email" placeholder="Email" required>
